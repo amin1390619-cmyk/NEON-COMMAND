@@ -4,7 +4,7 @@ name: Build NEON COMMAND APK
 on:
   push:
     branches:
-      - android-app
+      - android-app-v2
   workflow_dispatch:
 
 permissions:
