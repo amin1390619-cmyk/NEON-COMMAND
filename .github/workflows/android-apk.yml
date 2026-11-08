@@ -1,3 +1,4 @@
+
 name: Build NEON COMMAND APK
 
 on:
@@ -31,8 +32,11 @@ jobs:
       - name: Restore signing key
         env:
           KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
-          echo "$KEYSTORE_BASE64" | base64 --decode > app/neon-command-release.jks
+          set -euo pipefail
+          printf '%s' "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 --decode > app/neon-command-release.jks
+          keytool -list -keystore app/neon-command-release.jks -alias neon-command -storepass "$ANDROID_KEYSTORE_PASSWORD"
 
       - name: Build signed release APK
         env:
