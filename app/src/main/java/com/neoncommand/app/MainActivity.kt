@@ -2,8 +2,8 @@
 package com.neoncommand.app
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -13,9 +13,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.webkit.WebViewAssetLoader
 
 class MainActivity : ComponentActivity() {
@@ -23,19 +20,14 @@ class MainActivity : ComponentActivity() {
     private lateinit var webView: WebView
 
     private fun enableImmersiveMode() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        window.statusBarColor = Color.TRANSPARENT
-        window.navigationBarColor = Color.TRANSPARENT
-
-        WindowInsetsControllerCompat(
-            window,
-            window.decorView
-        ).apply {
-            hide(WindowInsetsCompat.Type.systemBars())
-            systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+        window.decorView.systemUiVisibility = (
+            View.SYSTEM_UI_FLAG_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        )
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -92,6 +84,8 @@ class MainActivity : ComponentActivity() {
         webView.webChromeClient = WebChromeClient()
 
         setContentView(webView)
+
+        enableImmersiveMode()
 
         val gameUrl =
             "https://appassets.androidplatform.net/assets/www/index.html"
