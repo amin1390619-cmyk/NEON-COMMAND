@@ -8,10 +8,11 @@ import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.webkit.WebViewAssetLoader
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        )
+
         window.decorView.systemUiVisibility = (
             View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -48,25 +52,28 @@ class MainActivity : ComponentActivity() {
             allowFileAccess = false
             allowContentAccess = false
             mixedContentMode =
-                android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW
+                WebSettings.MIXED_CONTENT_NEVER_ALLOW
             mediaPlaybackRequiresUserGesture = false
+            cacheMode = WebSettings.LOAD_DEFAULT
         }
 
         webView.webViewClient = object : WebViewClient() {
+
             override fun shouldInterceptRequest(
                 view: WebView,
                 request: WebResourceRequest
             ): WebResourceResponse? {
-                return assetLoader.shouldInterceptRequest(request.url)
+                return assetLoader.shouldInterceptRequest(
+                    request.url
+                )
             }
 
             override fun shouldOverrideUrlLoading(
                 view: WebView,
                 request: WebResourceRequest
             ): Boolean {
-                val url = request.url
-                return url.scheme != "https" &&
-                    url.scheme != "http"
+                val scheme = request.url.scheme
+                return scheme != "https" && scheme != "http"
             }
         }
 
@@ -103,7 +110,10 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        webView.stopLoading()
+        webView.loadUrl("about:blank")
         webView.destroy()
         super.onDestroy()
     }
 }
+
