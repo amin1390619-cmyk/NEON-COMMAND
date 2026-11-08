@@ -8,8 +8,8 @@
     <application
         android:allowBackup="true"
         android:label="NEON COMMAND"
-        android:icon="@drawable/ic_launcher"
-        android:roundIcon="@drawable/ic_launcher"
+        android:icon="@drawable/file_00000000d8908210ae902b075da1adc6"
+        android:roundIcon="@drawable/file_00000000d8908210ae902b075da1adc6"
         android:usesCleartextTraffic="false"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.NoActionBar">
