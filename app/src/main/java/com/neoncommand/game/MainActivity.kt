@@ -1,5 +1,5 @@
 
-package com.neoncommand.game
+package com.neoncommand.app
 
 import android.annotation.SuppressLint
 import android.os.Bundle
