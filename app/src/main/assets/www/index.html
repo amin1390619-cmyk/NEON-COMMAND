@@ -94,8 +94,44 @@ body.fa .btn{font-size:15px}
 /* تنظیمات: کارت مرتب با گروه‌بندی و کلیدهای روشن/خاموش */
 .sh{font-size:18px;font-weight:800;letter-spacing:2px;text-align:center;margin-bottom:4px}
 .sg{font-size:11px;letter-spacing:2px;color:#8b93a7;font-weight:700;margin:14px 4px 2px}
-.sr{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px;padding:10px 14px;background:#111826;border:1px solid #00e5ff22;border-radius:12px;font-weight:700;letter-spacing:.5px}
-.sr .tg{min-width:76px;padding:7px 12px;border-radius:999px;border:1.5px solid #3a4256;background:transparent;color:#8b93a7;font-weight:800;font-size:12px}
+.sr{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-height:48px;
+  box-sizing:border-box;
+  margin-top:6px;
+  padding:8px 12px;
+  background:#111826;
+  border:1px solid #00e5ff22;
+  border-radius:12px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+.sr .tg{
+  width:76px;
+  min-width:76px;
+  max-width:76px;
+  height:36px;
+  flex:0 0 76px;
+  box-sizing:border-box;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 6px;
+  border-radius:999px;
+  border:1.5px solid #3a4256;
+  background:transparent;
+  color:#8b93a7;
+  font-family:inherit;
+  font-size:12px;
+  line-height:1;
+  font-weight:800;
+  white-space:nowrap;
+  -webkit-appearance:none;
+  appearance:none;
+}
 .sr .tg.on{border-color:var(--neon-cyan);background:rgba(0,229,255,.16);color:var(--neon-cyan);box-shadow:0 0 10px #00e5ff44}
 .sr span{line-height:1.2}
 /* انتخابگر با فلش چپ/راست (موتور گرافیکی) — در هر دو زبان یکسان */
