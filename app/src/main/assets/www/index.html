@@ -2811,8 +2811,9 @@ function openSettings(){const row=(k,id)=>'<div class="sr"><span>'+tr(k)+'</span
  {const tf=$('#tFs');if(tf)tf.onclick=()=>{S.fs=(S.fs===false);syncSet();if(S.fs===false){try{const r=(document.exitFullscreen||document.webkitExitFullscreen).call(document);if(r&&r.catch)r.catch(()=>{})}catch(e){}}else tryFS()}}
  {const tp=$('#tFps');if(tp)tp.onclick=()=>{S.fps=(S.fps===false);syncSet()}}
  {const GFX=['pixi','canvas'],step=d=>{const i=GFX.indexOf(S.gfx==='canvas'?'canvas':'pixi');S.gfx=GFX[(i+d+GFX.length)%GFX.length];syncSet();if(S.gfx==='canvas')pxDisable();else{_q=0;_qBad=0;_qGood=0;_qRec=0;pxInit();resize()}vib(8)},l=$('#gL'),r=$('#gR');if(l)l.onclick=()=>step(-1);if(r)r.onclick=()=>step(1)}$('#tConfirm').onclick=()=>{S.confirmEnd=(S.confirmEnd===false);syncSet()};
-$('#tLang').onclick=()=>{S.lang=S.lang==='fa'?'en':'fa';syncSet();applyLang();openSettings();if(units)refresh()}
+$('#tLang').onclick=()=>{S.lang=S.lang==='fa'?'en':'fa';syncSet();applyLang();openSettings();if(units)refresh()};
 $('#tSupport').onclick=()=>window.open('https://rubika.ir/NEONCOMMAND','_blank');
+}
 $('#bSet').onclick=openSettings;
 document.querySelectorAll('.mute').forEach(m=>m.onclick=()=>setSound(!(S.sound||S.music)));syncSet();applyLang();
 $('#bClose').onclick=()=>{
