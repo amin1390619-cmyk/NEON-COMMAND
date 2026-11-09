@@ -2805,13 +2805,14 @@ function openSettings(){const row=(k,id)=>'<div class="sr"><span>'+tr(k)+'</span
  modal('<div class="sh">⚙ '+tr('setTitle')+'</div>'
   +'<div class="sg">'+tr('setAudio')+'</div>'+row('sound','tSound')+row('music','tMusic')
   +'<div class="sg">'+tr('setDisplay')+'</div>'+row('grid','tGrid')+row('fxOpt','tFx')+row('fpsOpt','tFps')+(pxSupported()?'<div class="sr"><span>'+tr('gfxOpt')+'</span><div class="sel" id="tGfx"><button class="ar" id="gL" aria-label="prev"><svg viewBox="0 0 10 10"><path d="M6.5 1.5 3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span id="gV"></span><button class="ar" id="gR" aria-label="next"><svg viewBox="0 0 10 10"><path d="M3.5 1.5 7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>':'')
-  +'<div class="sg">'+tr('setGame')+'</div>'+row('confirmEnd','tConfirm')+(navigator.vibrate?row('vib','tVib'):'')+(fsOK?row('fs','tFs'):'')+row('language','tLang'));
- $('#modal').classList.add('scr');$('#modal').style.background='#0B0F1A';syncSet();
+  +'<div class="sg">'+tr('setGame')+'</div>'+row('confirmEnd','tConfirm')+(navigator.vibrate?row('vib','tVib'):'')+(fsOK?row('fs','tFs'):'')+row('language','tLang')
++'<div class="sr" id="tSupport" role="button" tabindex="0"><span>'+(S.lang==='fa'?'پشتیبانی':'Support')+'</span><span>↗</span></div>');
  $('#tSound').onclick=()=>{S.sound=!S.sound;syncSet()};$('#tMusic').onclick=()=>{S.music=!S.music;syncSet();if(!S.music)stopMusic();else if($('#game').classList.contains('on')&&!over)startMusic()};$('#tGrid').onclick=()=>{S.grid=!S.grid;syncSet()};$('#tFx').onclick=()=>{S.fx=(S.fx===false);syncSet()};{const tv=$('#tVib');if(tv)tv.onclick=()=>{S.vib=(S.vib===false);syncSet();vib(40)}}
  {const tf=$('#tFs');if(tf)tf.onclick=()=>{S.fs=(S.fs===false);syncSet();if(S.fs===false){try{const r=(document.exitFullscreen||document.webkitExitFullscreen).call(document);if(r&&r.catch)r.catch(()=>{})}catch(e){}}else tryFS()}}
  {const tp=$('#tFps');if(tp)tp.onclick=()=>{S.fps=(S.fps===false);syncSet()}}
  {const GFX=['pixi','canvas'],step=d=>{const i=GFX.indexOf(S.gfx==='canvas'?'canvas':'pixi');S.gfx=GFX[(i+d+GFX.length)%GFX.length];syncSet();if(S.gfx==='canvas')pxDisable();else{_q=0;_qBad=0;_qGood=0;_qRec=0;pxInit();resize()}vib(8)},l=$('#gL'),r=$('#gR');if(l)l.onclick=()=>step(-1);if(r)r.onclick=()=>step(1)}$('#tConfirm').onclick=()=>{S.confirmEnd=(S.confirmEnd===false);syncSet()};
- $('#tLang').onclick=()=>{S.lang=S.lang==='fa'?'en':'fa';syncSet();applyLang();openSettings();if(units)refresh()}}
+$('#tLang').onclick=()=>{S.lang=S.lang==='fa'?'en':'fa';syncSet();applyLang();openSettings();if(units)refresh()}
+$('#tSupport').onclick=()=>window.open('https://rubika.ir/NEONCOMMAND','_blank');
 $('#bSet').onclick=openSettings;
 document.querySelectorAll('.mute').forEach(m=>m.onclick=()=>setSound(!(S.sound||S.music)));syncSet();applyLang();
 $('#bClose').onclick=()=>{
