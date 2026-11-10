@@ -111,7 +111,6 @@ class MainActivity : ComponentActivity() {
             cacheMode = WebSettings.LOAD_DEFAULT
 
             javaScriptCanOpenWindowsAutomatically = true
-            supportMultipleWindows = true
         }
 
         webView.webViewClient = object : WebViewClient() {
