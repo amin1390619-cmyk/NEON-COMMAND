@@ -1,39 +1,58 @@
-{
-  "project_info": {
-    "project_number": "420067718510",
-    "project_id": "neon-command",
-    "storage_bucket": "neon-command.firebasestorage.app"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:420067718510:android:0a6ae700ed0270d2ad3d7f",
-        "android_client_info": {
-          "package_name": "com.neoncommand.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "420067718510-ttsv6juufis0hu28jbp2jm7m48crjjni.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCjhWc4q6PHnTK5mC_ECK4ocG4VSvQ42tI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "420067718510-ttsv6juufis0hu28jbp2jm7m48crjjni.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+}
+
+android {
+    namespace = "com.neoncommand.app"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.neoncommand.app"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0.0"
     }
-  ],
-  "configuration_version": "1"
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("neon-command-release.jks")
+            storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+            keyAlias = "neon-command"
+            keyPassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
+dependencies {
+    implementation("androidx.webkit:webkit:1.12.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
+    implementation("com.google.firebase:firebase-auth")
+
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 }
