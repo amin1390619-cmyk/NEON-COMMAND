@@ -38,16 +38,22 @@ jobs:
           printf '%s' "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 --decode > app/neon-command-release.jks
           keytool -list -keystore app/neon-command-release.jks -alias neon-command -storepass "$ANDROID_KEYSTORE_PASSWORD"
 
-      - name: Build signed release APK
+      - name: Build signed release APK and AAB
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-        run: gradle assembleRelease
+        run: gradle assembleRelease bundleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NEON-COMMAND-APK-RELEASE
           path: app/build/outputs/apk/release/app-release.apk
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEON-COMMAND-AAB-RELEASE
+          path: app/build/outputs/bundle/release/app-release.aab
 
       - name: Remove signing key
         if: always()
