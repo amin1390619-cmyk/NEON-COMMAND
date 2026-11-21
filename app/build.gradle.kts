@@ -48,9 +48,15 @@ kotlin {
     }
 }
 
+
 dependencies {
     implementation("androidx.webkit:webkit:1.12.1")
     implementation("androidx.activity:activity-ktx:1.10.1")
+
+    // Cafe Bazaar Billing
+    implementation("com.github.cafebazaar.Poolakey:poolakey:2.2.0")
+}
+
 
     implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
     implementation("com.google.firebase:firebase-auth")
