@@ -17,29 +17,30 @@ android {
         versionName = "1.0.0"
     }
 
-signingConfigs {
-    create("release") {
-        storeFile = file("neon-command-release.jks")
-        storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
-        keyAlias = "neon-command"
-        keyPassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+    signingConfigs {
+        create("release") {
+            storeFile = file("neon-command-release.jks")
+            storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+            keyAlias = "neon-command"
+            keyPassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+        }
     }
-}
 
-buildTypes {
-    release {
-        signingConfig = signingConfigs.getByName("release")
-        isMinifyEnabled = true
-        proguardFiles(
-            getDefaultProguardFile("proguard-android-optimize.txt"),
-            "proguard-rules.pro"
-        )
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
-}
 
-compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 kotlin {
@@ -48,21 +49,19 @@ kotlin {
     }
 }
 
-
 dependencies {
     implementation("androidx.webkit:webkit:1.12.1")
     implementation("androidx.activity:activity-ktx:1.10.1")
 
     // Cafe Bazaar Billing
     implementation("com.github.cafebazaar.Poolakey:poolakey:2.2.0")
-}
 
-
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
     implementation("com.google.firebase:firebase-auth")
 
+    // Google Sign-In
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
-}
 }
