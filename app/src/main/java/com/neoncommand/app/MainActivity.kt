@@ -1,4 +1,3 @@
-
 package com.neoncommand.app
 
 import android.annotation.SuppressLint
@@ -47,6 +46,7 @@ import org.json.JSONObject
 class MainActivity : ComponentActivity() {
 
     private lateinit var webView: WebView
+    private lateinit var payBridge: PayBridge
 
     // ---------------------------------------------------------------
     // ورود با حساب گوگل (Credential Manager + Firebase Authentication)
@@ -404,6 +404,9 @@ class MainActivity : ComponentActivity() {
 
         webView.addJavascriptInterface(NeonAuthBridge(), "NeonAuth")
 
+        payBridge = PayBridge(this, { webView }, { isTrustedPage() })
+        webView.addJavascriptInterface(payBridge, "NeonPay")
+
         webView.setBackgroundColor(Color.TRANSPARENT)
 
         setContentView(webView)
@@ -448,6 +451,7 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        if (::payBridge.isInitialized) payBridge.release()
         signInCancel?.cancel()
         webView.stopLoading()
         webView.loadUrl("about:blank")
