@@ -1,4 +1,3 @@
-
 name: Build NEON COMMAND APK
 
 on:
@@ -38,22 +37,22 @@ jobs:
           printf '%s' "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 --decode > app/neon-command-release.jks
           keytool -list -keystore app/neon-command-release.jks -alias neon-command -storepass "$ANDROID_KEYSTORE_PASSWORD"
 
-      - name: Build signed release APK and AAB
+      - name: Build signed release APKs (Bazaar and Myket)
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-        run: gradle assembleRelease bundleRelease
+        run: gradle assembleBazaarRelease assembleMyketRelease
 
-      - name: Upload APK
+      - name: Upload Bazaar APK
         uses: actions/upload-artifact@v4
         with:
-          name: NEON-COMMAND-APK-RELEASE
-          path: app/build/outputs/apk/release/app-release.apk
+          name: NEON-COMMAND-BAZAAR-APK
+          path: app/build/outputs/apk/bazaar/release/*.apk
 
-      - name: Upload AAB
+      - name: Upload Myket APK
         uses: actions/upload-artifact@v4
         with:
-          name: NEON-COMMAND-AAB-RELEASE
-          path: app/build/outputs/bundle/release/app-release.aab
+          name: NEON-COMMAND-MYKET-APK
+          path: app/build/outputs/apk/myket/release/*.apk
 
       - name: Remove signing key
         if: always()
