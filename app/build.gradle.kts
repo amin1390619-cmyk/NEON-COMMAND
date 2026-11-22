@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -15,6 +14,23 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
+    }
+
+    // دو نسخهٔ جدا برای دو فروشگاه
+    flavorDimensions += "store"
+    productFlavors {
+        create("bazaar") {
+            dimension = "store"
+            buildConfigField("String", "STORE", "\"bazaar\"")
+        }
+        create("myket") {
+            dimension = "store"
+            buildConfigField("String", "STORE", "\"myket\"")
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     signingConfigs {
@@ -53,8 +69,8 @@ dependencies {
     implementation("androidx.webkit:webkit:1.12.1")
     implementation("androidx.activity:activity-ktx:1.10.1")
 
-    // Cafe Bazaar Billing
-    implementation("com.github.cafebazaar.Poolakey:poolakey:2.2.0")
+    // Cafe Bazaar Billing (فقط در نسخهٔ بازار)
+    "bazaarImplementation"("com.github.cafebazaar.Poolakey:poolakey:2.2.0")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
