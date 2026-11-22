@@ -18,6 +18,7 @@ class StoreBillingImpl(private val activity: ComponentActivity) : StoreBilling {
 
     private var connected = false
     private var connecting = false
+    private var disconnector: (() -> Unit)? = null
     private val waiting = mutableListOf<(Boolean) -> Unit>()
 
     private fun flush(ok: Boolean) {
@@ -35,7 +36,7 @@ class StoreBillingImpl(private val activity: ComponentActivity) : StoreBilling {
         if (connecting) return
         connecting = true
         try {
-            payment.connect {
+            val paymentConnection = payment.connect {
                 connectionSucceed {
                     connecting = false
                     connected = true
@@ -50,6 +51,7 @@ class StoreBillingImpl(private val activity: ComponentActivity) : StoreBilling {
                     connected = false
                 }
             }
+            disconnector = { paymentConnection.disconnect() }
         } catch (e: Exception) {
             connecting = false
             flush(false)
@@ -109,7 +111,7 @@ class StoreBillingImpl(private val activity: ComponentActivity) : StoreBilling {
 
     override fun release() {
         try {
-            payment.disconnect()
+            disconnector?.invoke()
         } catch (e: Exception) {
         }
     }
