@@ -12,8 +12,8 @@ android {
         applicationId = "com.neoncommand.app"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 10
+        versionName = "1.0.10"
     }
 
     // دو نسخهٔ جدا برای دو فروشگاه
