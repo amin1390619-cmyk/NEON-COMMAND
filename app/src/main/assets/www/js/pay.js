@@ -31,7 +31,7 @@
  const setMsg=m=>{const e=document.getElementById('payMsg');if(e)e.textContent=m||''};
 
  function paint(){
-  [['#bAI',hasAI()],['#bHost',hasFull()],['#bJoin',hasFull()]].forEach(([q,ok])=>{
+  [['#bAI',hasAI()],['#bOnline',hasFull()]].forEach(([q,ok])=>{
    const b=document.querySelector(q);if(!b)return;
    let l=b.querySelector('.nclock');
    if(!ok&&!l){l=document.createElement('span');l.className='nclock';l.textContent=' 🔒';b.appendChild(l)}
@@ -83,7 +83,7 @@
   const el=e.target;if(!el||!el.closest)return;
   let need=null;
   if(el.closest('#bAI')&&!hasAI())need='ai';
-  else if((el.closest('#bHost')||el.closest('#bJoin'))&&!hasFull())need='full';
+  else if(el.closest('#bOnline')&&!hasFull())need='full';
   else{const mc=el.closest('.mapCard');if(mc&&mc.dataset.id==='reactor'&&!hasFull())need='full'}
   if(!need)return;
   e.stopImmediatePropagation();e.preventDefault();paywall(need)},true);
