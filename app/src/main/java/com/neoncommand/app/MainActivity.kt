@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var webView: WebView
     private lateinit var payBridge: PayBridge
+    private lateinit var lanBridge: NeonLan
 
     // ---------------------------------------------------------------
     // ورود با حساب گوگل (Credential Manager + Firebase Authentication)
@@ -407,6 +408,10 @@ class MainActivity : ComponentActivity() {
         payBridge = PayBridge(this, { webView }, { isTrustedPage() })
         webView.addJavascriptInterface(payBridge, "NeonPay")
 
+        // اتصال محلی Wi-Fi / هات‌اسپات (window.NeonLan)
+        lanBridge = NeonLan(this, { webView }, { isTrustedPage() })
+        webView.addJavascriptInterface(lanBridge, "NeonLan")
+
         webView.setBackgroundColor(Color.TRANSPARENT)
 
         setContentView(webView)
@@ -452,6 +457,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         if (::payBridge.isInitialized) payBridge.release()
+        if (::lanBridge.isInitialized) lanBridge.release()
         signInCancel?.cancel()
         webView.stopLoading()
         webView.loadUrl("about:blank")
