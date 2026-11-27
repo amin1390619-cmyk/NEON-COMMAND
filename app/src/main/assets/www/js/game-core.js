@@ -27,7 +27,7 @@ en:{mapTitle:'CHOOSE MAP',mapBack:'BACK',mapObs:'obstacles',mapRep:'repair tiles
  lanNote:'Method 2 works without internet. Both phones must be on the same Wi-Fi, or one phone connects to the other one\'s hotspot.',
  lanHostShare:'Your room is visible to nearby phones. Or tell your opponent this address:',lanStarting:'STARTING...',
  lanRooms:'ROOMS NEAR YOU',lanScanning:'Searching...',lanManual:'Or enter the host address:',
- lanAppOnly:'Wi-Fi mode works only in the Android app.',lanBadAddr:'Invalid address. Example: 192.168.43.1',lanNoNet:'No Wi-Fi or hotspot found. Connect to Wi-Fi or turn on your hotspot.',lanConnFail:'Could not connect. Check the address and make sure both phones are on the same network.',
+ lanAppOnly:'Wi-Fi mode works only in the Android app.',lanBadAddr:'Invalid address. Example: 192.168.43.1',lanNoNet:'No Wi-Fi or hotspot found. Connect to Wi-Fi or turn on your hotspot.',lanConnFail:'Could not connect. Check the address and make sure both phones are on the same network.',lanSlow:'No answer yet. Make sure Wi-Fi or your hotspot is ON and turn OFF any VPN.',lanVpn:'VPN is ON. Turn it OFF for Wi-Fi mode.',
  sound:'SOUND EFFECTS',music:'MUSIC',grid:'GRID',fxOpt:'VISUAL EFFECTS',language:'LANGUAGE',langName:'فارسی',on:'ON',off:'OFF',menuTip:'Menu',
  how:`<div class="ht">
 <h2>HOW TO PLAY</h2>
@@ -103,7 +103,7 @@ fa:{mapTitle:'انتخاب نقشه',mapBack:'بازگشت',mapObs:'مانع',ma
  lanNote:'روش 2 به اینترنت نیاز ندارد. هر دو گوشی باید روی یک Wi-Fi باشند، یا یکی به هات‌اسپات دیگری وصل شود.',
  lanHostShare:'اتاق شما برای گوشی‌های اطراف نمایش داده می‌شود. یا این آدرس را به حریفتان بگویید:',lanStarting:'در حال راه‌اندازی...',
  lanRooms:'اتاق‌های اطراف',lanScanning:'در حال جستجو...',lanManual:'یا آدرس میزبان را وارد کنید:',
- lanAppOnly:'حالت Wi-Fi فقط در برنامهٔ اندروید کار می‌کند.',lanBadAddr:'آدرس نامعتبر است. مثال: 192.168.43.1',lanNoNet:'Wi-Fi یا هات‌اسپات پیدا نشد. به Wi-Fi وصل شوید یا هات‌اسپات را روشن کنید.',lanConnFail:'اتصال برقرار نشد. آدرس را بررسی کنید و مطمئن شوید هر دو گوشی روی یک شبکه‌اند.',
+ lanAppOnly:'حالت Wi-Fi فقط در برنامهٔ اندروید کار می‌کند.',lanBadAddr:'آدرس نامعتبر است. مثال: 192.168.43.1',lanNoNet:'Wi-Fi یا هات‌اسپات پیدا نشد. به Wi-Fi وصل شوید یا هات‌اسپات را روشن کنید.',lanConnFail:'اتصال برقرار نشد. آدرس را بررسی کنید و مطمئن شوید هر دو گوشی روی یک شبکه‌اند.',lanSlow:'هنوز جوابی نیامده. مطمئن شوید Wi-Fi یا هات‌اسپات روشن است و VPN را خاموش کنید.',lanVpn:'VPN روشن است. برای حالت Wi-Fi آن را خاموش کنید.',
  sound:'افکت‌های صدا',music:'موسیقی',grid:'شبکه',fxOpt:'افکت‌های بصری',language:'زبان',langName:'English',on:'روشن',off:'خاموش',menuTip:'منو',
  how:`<div class="ht">
 <h2>آموزش بازی</h2>
@@ -1238,6 +1238,14 @@ const netTabs=cur=>`<div style="display:flex;gap:8px;margin:10px 0 6px">
 const lanErr=e=>{const c=(e&&(e.message||e.type))||'';
   const m={no_network:'lanNoNet',bad_addr:'lanBadAddr',app_only:'lanAppOnly',connect_failed:'lanConnFail'};
   return m[c]?tr(m[c]):tr('err')+c};
+/* خط عیب‌یابی شبکه (برای صفحهٔ روش ۲): اینترفیس‌ها و وضعیت VPN */
+function lanInfo(){
+  try{
+    const o=JSON.parse(NeonLan.info());
+    const ifs=o.ifs.map(i=>i.n+' '+i.a.join(',')+(i.skip?' (x)':'')).join('  |  ')||'no network';
+    return {vpn:!!o.vpn,text:(o.vpn?'VPN ON  |  ':'')+ifs};
+  }catch(e){return {vpn:false,text:'info: n/a'}}
+}
 function leaveNet(){NET.cleanup();onlineMode=null;$('#netModal').style.display='none';updateNetStatus()}
 
 function renderHost(method){
@@ -1252,7 +1260,8 @@ function renderHost(method){
   }else{
     html+=`<div style="font-size:12px;color:#8b93a7">${tr('lanNote')}</div><br>${tr('lanHostShare')}<br><br>
     <div id="lanAddr" style="font-size:26px;letter-spacing:2px;color:var(--amber-core);text-align:center;padding:18px;background:#000;border-radius:12px;font-weight:800;direction:ltr">········</div>
-    <div id="lanSt" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px">${tr('lanStarting')}</div>`;
+    <div id="lanSt" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px">${tr('lanStarting')}</div>
+    <div id="lanInfo" style="text-align:center;color:#5d667f;margin-top:10px;font:10px/1.5 monospace;direction:ltr;word-break:break-all"></div>`;
     $('#netActions').innerHTML=`<button class="btn" id="bCancelHost" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }
   $('#netBody').innerHTML=html;$('#netModal').style.display='flex';
@@ -1268,11 +1277,14 @@ function renderHost(method){
       err=>{const st=document.getElementById('hostStatus');if(st)st.textContent=tr('err')+(err.message||err.type)});
     $('#bCopyCode').onclick=()=>{if(NET.roomCode&&navigator.clipboard)navigator.clipboard.writeText(NET.roomCode)};
   }else{
-    const st=$('#lanSt'),ad=$('#lanAddr');
+    const st=$('#lanSt'),ad=$('#lanAddr'),inf=$('#lanInfo');
     if(!NET.hasLan()){st.textContent=tr('lanAppOnly');return}
     onlineMode='host';
+    const li=lanInfo();inf.textContent=li.text;
     NET.hostLan(addr=>{ad.textContent=addr;st.textContent=tr('hostWait')},()=>{},
       err=>{st.textContent=lanErr(err)});
+    setTimeout(()=>{if(!/\d/.test(ad.textContent)&&document.body.contains(ad)){
+      const l2=lanInfo();inf.textContent=l2.text;st.textContent=l2.vpn?tr('lanVpn'):tr('lanSlow')}},2500);
   }
 }
 function renderJoin(method){
@@ -1292,7 +1304,8 @@ function renderJoin(method){
     <div class="mstep">${tr('lanManual')}</div>
     <input id="lanInput" placeholder="192.168.43.1" inputmode="decimal" autocomplete="off"
       style="width:100%;box-sizing:border-box;margin-top:6px;padding:14px;font-size:20px;letter-spacing:2px;text-align:center;direction:ltr;background:#000;border:2px solid var(--amber-core);border-radius:12px;color:var(--amber-core);font-weight:800;outline:none">
-    <div id="joinStatus" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px"></div>`;
+    <div id="joinStatus" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px"></div>
+    <div id="lanInfo" style="text-align:center;color:#5d667f;margin-top:10px;font:10px/1.5 monospace;direction:ltr;word-break:break-all"></div>`;
     $('#netActions').innerHTML=`<button class="btn" id="bDoJoin" style="flex:1;border-color:var(--amber-core)">${tr('connect')}</button>
       <button class="btn" id="bCancelJoin" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }
@@ -1330,6 +1343,7 @@ function renderJoin(method){
     $('#bDoJoin').onclick=()=>go(inp.value);
     inp.addEventListener('keydown',e=>{if(e.key==='Enter')go(inp.value)});
     if(NET.lanScan(showRooms))showRooms([]);else st.textContent=tr('lanAppOnly');
+    if(NET.hasLan()){const li=lanInfo();$('#lanInfo').textContent=li.text;if(li.vpn)st.textContent=tr('lanVpn')}
   }
 }
 const openHostModal=()=>renderHost(1);
