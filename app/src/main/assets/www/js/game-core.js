@@ -23,11 +23,11 @@ en:{mapTitle:'CHOOSE MAP',mapBack:'BACK',mapObs:'obstacles',mapRep:'repair tiles
  joinTitle:'🌐 JOIN A GAME',joinPaste:'Paste the room code from your opponent:',connect:'CONNECT',enterCode:'ENTER A CODE',connecting:'CONNECTING...',
  noNetTitle:'ONLINE UNAVAILABLE',noNetMsg:'PeerJS failed to load or the network is blocked.',
  backTitle:'BACK TO MENU?',backOnline:'The online game will end for both players.',backLocal:'The current game will be lost.',yesLeave:'YES, LEAVE',
- setTitle:'SETTINGS',gAccTitle:'ACCOUNT',gConnect:'Connect Google Account',gConnecting:'Connecting…',gOk:'Account connected',gNone:'No account connected',gErrOffline:'No internet connection. Check your connection and try again.',gErrCancel:'Sign-in cancelled.',gErrNoAcc:'No Google account found on this device. Add one in Android settings and try again.',gErrUnavail:'Google sign-in is not available on this device. Update Google Play services and try again.',gErrFail:'Sign-in failed. Please try again.',gErrApp:'Google sign-in works only in the Android app.',support:'SUPPORT',supportBtn:'CONTACT',setAudio:'AUDIO',vib:'VIBRATION',fs:'FULLSCREEN',gfxOpt:'GRAPHICS ENGINE',fpsOpt:'FPS COUNTER',setDisplay:'DISPLAY',setGame:'GAME',whyTime:'THE OTHER PLAYER RAN OUT OF TIME 3 TIMES',confirmEnd:'CONFIRM END TURN',endAsk1:'You still have ',endAsk2:' AP left. End your turn anyway?',yesEnd:'YES, END TURN',again:'PLAY AGAIN',rmWait:'WAITING FOR OPPONENT...',rmAsk:'OPPONENT WANTS TO PLAY AGAIN!',aiName:'AI',aiLvTitle:'CHOOSE AI DIFFICULTY',lv_easy:'EASY',lv_medium:'NORMAL',lv_hard:'HARD',lvd_easy:'Great for learning. The AI makes many mistakes.',lvd_medium:'A fair fight. The AI sometimes slips.',lvd_hard:'No mercy. The AI plays its best.',m1:'METHOD 1',m1s:'Room code',m2:'METHOD 2',m2s:'Manual connect',
- mNote:'Method 2 needs no server or VPN. Works best when both phones share the same Wi-Fi or hotspot.',
- mH1:'Step 1: send this invite code to your opponent.',mH2:'Step 2: paste the reply code your opponent sends back, then tap CONNECT.',
- mJ1:'Step 1: paste the invite code from the host, then tap MAKE REPLY.',mJ2:'Step 2: send this reply code back to the host, then wait.',
- copyCode:'📋 COPY',paste:'📥 PASTE',makeReply:'MAKE REPLY',mMaking:'MAKING CODE... (few seconds)',mReady:'CODE READY',mJReady:'REPLY READY. SEND IT TO THE HOST AND WAIT...',mBad:'INVALID CODE',mCopied:'COPIED',mNoJs:'WebRTC is not available on this device.',
+ setTitle:'SETTINGS',gAccTitle:'ACCOUNT',gConnect:'Connect Google Account',gConnecting:'Connecting…',gOk:'Account connected',gNone:'No account connected',gErrOffline:'No internet connection. Check your connection and try again.',gErrCancel:'Sign-in cancelled.',gErrNoAcc:'No Google account found on this device. Add one in Android settings and try again.',gErrUnavail:'Google sign-in is not available on this device. Update Google Play services and try again.',gErrFail:'Sign-in failed. Please try again.',gErrApp:'Google sign-in works only in the Android app.',support:'SUPPORT',supportBtn:'CONTACT',setAudio:'AUDIO',vib:'VIBRATION',fs:'FULLSCREEN',gfxOpt:'GRAPHICS ENGINE',fpsOpt:'FPS COUNTER',setDisplay:'DISPLAY',setGame:'GAME',whyTime:'THE OTHER PLAYER RAN OUT OF TIME 3 TIMES',confirmEnd:'CONFIRM END TURN',endAsk1:'You still have ',endAsk2:' AP left. End your turn anyway?',yesEnd:'YES, END TURN',again:'PLAY AGAIN',rmWait:'WAITING FOR OPPONENT...',rmAsk:'OPPONENT WANTS TO PLAY AGAIN!',aiName:'AI',aiLvTitle:'CHOOSE AI DIFFICULTY',lv_easy:'EASY',lv_medium:'NORMAL',lv_hard:'HARD',lvd_easy:'Great for learning. The AI makes many mistakes.',lvd_medium:'A fair fight. The AI sometimes slips.',lvd_hard:'No mercy. The AI plays its best.',m1:'METHOD 1',m1s:'Room code',m2:'METHOD 2',m2s:'Wi-Fi / Hotspot',
+ lanNote:'Method 2 works without internet. Both phones must be on the same Wi-Fi, or one phone connects to the other one\'s hotspot.',
+ lanHostShare:'Your room is visible to nearby phones. Or tell your opponent this address:',lanStarting:'STARTING...',
+ lanRooms:'ROOMS NEAR YOU',lanScanning:'Searching...',lanManual:'Or enter the host address:',
+ lanAppOnly:'Wi-Fi mode works only in the Android app.',lanBadAddr:'Invalid address. Example: 192.168.43.1',lanNoNet:'No Wi-Fi or hotspot found. Connect to Wi-Fi or turn on your hotspot.',lanConnFail:'Could not connect. Check the address and make sure both phones are on the same network.',
  sound:'SOUND EFFECTS',music:'MUSIC',grid:'GRID',fxOpt:'VISUAL EFFECTS',language:'LANGUAGE',langName:'فارسی',on:'ON',off:'OFF',menuTip:'Menu',
  how:`<div class="ht">
 <h2>HOW TO PLAY</h2>
@@ -99,11 +99,11 @@ fa:{mapTitle:'انتخاب نقشه',mapBack:'بازگشت',mapObs:'مانع',ma
  joinTitle:'🌐 ورود به اتاق بازی',joinPaste:'کد اتاقی را که حریفتان فرستاده وارد کنید:',connect:'اتصال',enterCode:'یک کد وارد کنید',connecting:'در حال اتصال...',
  noNetTitle:'بازی آنلاین در دسترس نیست',noNetMsg:'PeerJS لود نشد یا شبکه مسدود است.',
  backTitle:'بازگشت به منو؟',backOnline:'بازی آنلاین برای هر دو بازیکن تمام می‌شود.',backLocal:'بازی فعلی از دست می‌رود.',yesLeave:'بله، خروج',
- setTitle:'تنظیمات',gAccTitle:'حساب کاربری',gConnect:'اتصال حساب گوگل',gConnecting:'در حال اتصال…',gOk:'حساب متصل است',gNone:'حسابی متصل نیست',gErrOffline:'اینترنت وصل نیست. اتصال را بررسی کنید و دوباره تلاش کنید.',gErrCancel:'ورود لغو شد.',gErrNoAcc:'حساب گوگلی روی این دستگاه پیدا نشد. از تنظیمات اندروید یک حساب اضافه کنید و دوباره تلاش کنید.',gErrUnavail:'ورود با گوگل روی این دستگاه در دسترس نیست. Google Play Services را به‌روزرسانی کنید.',gErrFail:'ورود انجام نشد. لطفاً دوباره تلاش کنید.',gErrApp:'ورود با گوگل فقط در برنامهٔ اندروید کار می‌کند.',support:'پشتیبانی',supportBtn:'ارتباط',setAudio:'صدا',vib:'لرزش',fs:'تمام‌صفحه',gfxOpt:'موتور گرافیکی',fpsOpt:'نمایش FPS',setDisplay:'نمایش',setGame:'بازی',whyTime:'حریف ۳ بار زمان نوبتش را از دست داد',confirmEnd:'تأیید پایان نوبت',endAsk1:'هنوز ',endAsk2:' امتیاز عمل (AP) باقی مانده است. نوبت را تمام می‌کنید؟',yesEnd:'بله، پایان نوبت',again:'بازی دوباره',rmWait:'منتظر تأیید حریف...',rmAsk:'حریف می‌خواهد دوباره بازی کند!',aiName:'AI',aiLvTitle:'سطح AI را انتخاب کنید',lv_easy:'آسان',lv_medium:'متوسط',lv_hard:'سخت',lvd_easy:'مناسب یادگیری. AI زیاد اشتباه می‌کند.',lvd_medium:'مبارزه‌ای منصفانه. گاهی اشتباه می‌کند.',lvd_hard:'بدون ترحم. بهترین بازی خودش را می‌کند.',m1:'روش 1',m1s:'کد اتاق',m2:'روش 2',m2s:'اتصال دستی',
- mNote:'روش 2 به سرور و VPN نیاز ندارد. وقتی هر دو گوشی روی یک Wi-Fi یا هات‌اسپات باشند بهترین کار را می‌کند.',
- mH1:'مرحله 1: این کد دعوت را برای حریفتان بفرستید.',mH2:'مرحله 2: کد جوابی را که حریف فرستاد اینجا بچسبانید و «اتصال» را بزنید.',
- mJ1:'مرحله 1: کد دعوت میزبان را بچسبانید و «ساخت کد جواب» را بزنید.',mJ2:'مرحله 2: این کد جواب را برای میزبان بفرستید و منتظر بمانید.',
- copyCode:'📋 کپی',paste:'📥 چسباندن',makeReply:'ساخت کد جواب',mMaking:'در حال ساخت کد... (چند ثانیه)',mReady:'کد آماده است',mJReady:'کد جواب آماده است. آن را برای میزبان بفرستید و منتظر بمانید...',mBad:'کد نامعتبر است',mCopied:'کپی شد',mNoJs:'این گوشی از WebRTC پشتیبانی نمی‌کند.',
+ setTitle:'تنظیمات',gAccTitle:'حساب کاربری',gConnect:'اتصال حساب گوگل',gConnecting:'در حال اتصال…',gOk:'حساب متصل است',gNone:'حسابی متصل نیست',gErrOffline:'اینترنت وصل نیست. اتصال را بررسی کنید و دوباره تلاش کنید.',gErrCancel:'ورود لغو شد.',gErrNoAcc:'حساب گوگلی روی این دستگاه پیدا نشد. از تنظیمات اندروید یک حساب اضافه کنید و دوباره تلاش کنید.',gErrUnavail:'ورود با گوگل روی این دستگاه در دسترس نیست. Google Play Services را به‌روزرسانی کنید.',gErrFail:'ورود انجام نشد. لطفاً دوباره تلاش کنید.',gErrApp:'ورود با گوگل فقط در برنامهٔ اندروید کار می‌کند.',support:'پشتیبانی',supportBtn:'ارتباط',setAudio:'صدا',vib:'لرزش',fs:'تمام‌صفحه',gfxOpt:'موتور گرافیکی',fpsOpt:'نمایش FPS',setDisplay:'نمایش',setGame:'بازی',whyTime:'حریف ۳ بار زمان نوبتش را از دست داد',confirmEnd:'تأیید پایان نوبت',endAsk1:'هنوز ',endAsk2:' امتیاز عمل (AP) باقی مانده است. نوبت را تمام می‌کنید؟',yesEnd:'بله، پایان نوبت',again:'بازی دوباره',rmWait:'منتظر تأیید حریف...',rmAsk:'حریف می‌خواهد دوباره بازی کند!',aiName:'AI',aiLvTitle:'سطح AI را انتخاب کنید',lv_easy:'آسان',lv_medium:'متوسط',lv_hard:'سخت',lvd_easy:'مناسب یادگیری. AI زیاد اشتباه می‌کند.',lvd_medium:'مبارزه‌ای منصفانه. گاهی اشتباه می‌کند.',lvd_hard:'بدون ترحم. بهترین بازی خودش را می‌کند.',m1:'روش 1',m1s:'کد اتاق',m2:'روش 2',m2s:'Wi-Fi / هات‌اسپات',
+ lanNote:'روش 2 به اینترنت نیاز ندارد. هر دو گوشی باید روی یک Wi-Fi باشند، یا یکی به هات‌اسپات دیگری وصل شود.',
+ lanHostShare:'اتاق شما برای گوشی‌های اطراف نمایش داده می‌شود. یا این آدرس را به حریفتان بگویید:',lanStarting:'در حال راه‌اندازی...',
+ lanRooms:'اتاق‌های اطراف',lanScanning:'در حال جستجو...',lanManual:'یا آدرس میزبان را وارد کنید:',
+ lanAppOnly:'حالت Wi-Fi فقط در برنامهٔ اندروید کار می‌کند.',lanBadAddr:'آدرس نامعتبر است. مثال: 192.168.43.1',lanNoNet:'Wi-Fi یا هات‌اسپات پیدا نشد. به Wi-Fi وصل شوید یا هات‌اسپات را روشن کنید.',lanConnFail:'اتصال برقرار نشد. آدرس را بررسی کنید و مطمئن شوید هر دو گوشی روی یک شبکه‌اند.',
  sound:'افکت‌های صدا',music:'موسیقی',grid:'شبکه',fxOpt:'افکت‌های بصری',language:'زبان',langName:'English',on:'روشن',off:'خاموش',menuTip:'منو',
  how:`<div class="ht">
 <h2>آموزش بازی</h2>
@@ -1003,71 +1003,51 @@ const NET = (()=>{
   let peer=null, conn=null, connected=false, isHost=false, roomCode=null;
   const CH='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   const genCode=()=>{let s='NC-';for(let i=0;i<5;i++)s+=CH[Math.floor(Math.random()*CH.length)];return s};
-  let pc=null;
   function cleanup(){
     try{if(conn)conn.close()}catch(e){}
     try{if(peer)peer.destroy()}catch(e){}
-    try{if(pc)pc.close()}catch(e){}
-    peer=null;conn=null;pc=null;connected=false;
+    lanReset();
+    peer=null;conn=null;connected=false;
   }
-  /* ---- روش ۲: اتصال دستی (WebRTC بدون سرور؛ کدها با پیام‌رسان رد و بدل می‌شوند) ---- */
-  const ICE={iceServers:[{urls:'stun:stun.l.google.com:19302'}]};
-  const b64=u8=>{let s='';u8.forEach(b=>s+=String.fromCharCode(b));return btoa(s)};
-  const unb64=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
-  async function pack(d){
-    const j=JSON.stringify({t:d.type,s:d.sdp});
-    try{if(window.CompressionStream){
-      const cs=new CompressionStream('deflate'),w=cs.writable.getWriter();w.write(new TextEncoder().encode(j));w.close();
-      return 'NC2Z'+b64(new Uint8Array(await new Response(cs.readable).arrayBuffer()))}}catch(e){}
-    return 'NC2P'+btoa(unescape(encodeURIComponent(j)));
+  /* ---- روش ۲: وای‌فای / هات‌اسپات (سوکت بومی اندروید؛ بدون اینترنت و بدون سرور) ---- */
+  const hasLan=()=>typeof window.NeonLan!=='undefined';
+  const lan={h:{},rooms:new Map(),timer:null};
+  window.NeonLanCB={onEvent(e){const f=e&&lan.h[e.k];if(f)f(e)}};
+  function lanReset(){
+    lan.h={};clearInterval(lan.timer);lan.timer=null;lan.rooms.clear();
+    try{if(hasLan()){NeonLan.stopScan();NeonLan.close()}}catch(e){}
   }
-  async function unpack(code){
-    const c=(code||'').replace(/\s+/g,'');
-    if(c.slice(0,3)!=='NC2')throw new Error('bad code');
-    let j;
-    if(c[3]==='Z'){
-      const ds=new DecompressionStream('deflate'),w=ds.writable.getWriter();w.write(unb64(c.slice(4)));w.close();
-      j=await new Response(ds.readable).text();
-    }else j=decodeURIComponent(escape(atob(c.slice(4))));
-    const o=JSON.parse(j);return {type:o.t,sdp:o.s};
-  }
-  const waitIce=p=>new Promise(res=>{
-    if(p.iceGatheringState==='complete')return res();
-    let to;const done=()=>{clearTimeout(to);p.removeEventListener('icegatheringstatechange',chk);res()};
-    const chk=()=>{if(p.iceGatheringState==='complete')done()};
-    to=setTimeout(done,3500);p.addEventListener('icegatheringstatechange',chk);
-  });
-  function mkAdapter(dc){
+  function mkLanConn(){
     const h={};
-    const c={on(e,f){h[e]=f;if(e==='open'&&dc.readyState==='open')setTimeout(f,0)},
-      send(m){dc.send(JSON.stringify(m))},close(){try{dc.close()}catch(e){}}};
-    dc.onopen=()=>h.open&&h.open();
-    dc.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch(x){return}h.data&&h.data(m)};
-    dc.onclose=()=>h.close&&h.close();
-    dc.onerror=e=>h.error&&h.error(e);
-    return c;
+    lan.h.open=()=>h.open&&h.open();
+    lan.h.msg=e=>{let m;try{m=JSON.parse(e.d)}catch(x){return}h.data&&h.data(m)};
+    lan.h.close=()=>h.close&&h.close();
+    lan.h.error=e=>h.error&&h.error({message:e.m});
+    return {on(ev,f){h[ev]=f},send(m){NeonLan.send(JSON.stringify(m))},close(){try{NeonLan.close()}catch(e){}}};
   }
-  async function hostManual(onReady,onOpen,onError){
-    isHost=true;cleanup();
-    try{
-      pc=new RTCPeerConnection(ICE);
-      conn=mkAdapter(pc.createDataChannel('nc'));wire(onOpen,onError);
-      pc.onconnectionstatechange=()=>{if(pc&&pc.connectionState==='failed'&&!connected)onError&&onError({message:'connection failed'})};
-      await pc.setLocalDescription(await pc.createOffer());await waitIce(pc);
-      onReady(await pack(pc.localDescription));
-    }catch(e){onError&&onError(e)}
+  function hostLan(onReady,onOpen,onError){
+    isHost=true;roomCode=null;cleanup();
+    if(!hasLan()){onError&&onError({message:'app_only'});return}
+    conn=mkLanConn();wire(onOpen,onError);
+    lan.h.ready=e=>{roomCode=e.ip+(e.port===7777?'':':'+e.port);onReady(roomCode)};
+    NeonLan.host();
   }
-  async function acceptAnswer(code){const d=await unpack(code);await pc.setRemoteDescription(d)}
-  async function joinManual(code,onAnswer,onOpen,onError){
-    isHost=false;cleanup();
-    try{
-      const offer=await unpack(code);
-      pc=new RTCPeerConnection(ICE);
-      pc.ondatachannel=e=>{conn=mkAdapter(e.channel);wire(onOpen,onError)};
-      pc.onconnectionstatechange=()=>{if(pc&&pc.connectionState==='failed'&&!connected)onError&&onError({message:'connection failed'})};
-      await pc.setRemoteDescription(offer);await pc.setLocalDescription(await pc.createAnswer());await waitIce(pc);
-      onAnswer(await pack(pc.localDescription));
-    }catch(e){onError&&onError(e)}
+  function joinLan(addr,onOpen,onError){
+    isHost=false;roomCode=(addr||'').trim();cleanup();
+    if(!hasLan()){onError&&onError({message:'app_only'});return}
+    conn=mkLanConn();wire(onOpen,onError);
+    NeonLan.join(roomCode);
+  }
+  /* جستجوی اتاق‌های اطراف؛ onList هر بار که فهرست عوض شود با آرایهٔ {name,ip,port} صدا زده می‌شود */
+  function lanScan(onList){
+    lanReset();
+    if(!hasLan())return false;
+    const push=()=>onList([...lan.rooms.values()].sort((x,y)=>x.name<y.name?-1:x.name>y.name?1:0));
+    lan.h.found=e=>{const k=e.ip+':'+e.port,had=lan.rooms.has(k);
+      lan.rooms.set(k,{name:String(e.name||''),ip:e.ip,port:e.port,t:Date.now()});if(!had)push()};
+    lan.timer=setInterval(()=>{const now=Date.now();let ch=false;
+      lan.rooms.forEach((v,k)=>{if(now-v.t>4000){lan.rooms.delete(k);ch=true}});if(ch)push()},1000);
+    NeonLan.scan();return true;
   }
   function wire(onOpen,onError){
     conn.on('open',()=>{connected=true;onOpen()});
@@ -1100,7 +1080,7 @@ const NET = (()=>{
   }
   function send(msg){if(conn&&connected){try{conn.send(msg)}catch(e){console.warn(e)}}}
   return {
-    host,join,send,cleanup,hostManual,acceptAnswer,joinManual,
+    host,join,hostLan,joinLan,lanScan,hasLan,send,cleanup,
     get isHost(){return isHost},
     get connected(){return connected},
     get roomCode(){return roomCode}
@@ -1255,14 +1235,9 @@ function netEnd(reason){
 const netTabs=cur=>`<div style="display:flex;gap:8px;margin:10px 0 6px">
   <button class="btn ntab ${cur===1?'on':''}" data-m="1" style="flex:1;padding:8px 4px;font-size:13px;line-height:1.4">${tr('m1')}<br><small>${tr('m1s')}</small></button>
   <button class="btn ntab ${cur===2?'on':''}" data-m="2" style="flex:1;padding:8px 4px;font-size:13px;line-height:1.4;border-color:var(--amber-core)">${tr('m2')}<br><small>${tr('m2s')}</small></button></div>`;
-const hasRTC=()=>typeof RTCPeerConnection!=='undefined';
-function copyEl(el,st){
-  try{el.focus();el.select();el.setSelectionRange(0,99999)}catch(e){}
-  let ok=false;try{ok=document.execCommand('copy')}catch(e){}
-  if(!ok&&navigator.clipboard){try{navigator.clipboard.writeText(el.value);ok=true}catch(e){}}
-  if(ok&&st)st.textContent=tr('mCopied');
-}
-async function pasteInto(el){try{el.value=await navigator.clipboard.readText()}catch(e){el.focus()}}
+const lanErr=e=>{const c=(e&&(e.message||e.type))||'';
+  const m={no_network:'lanNoNet',bad_addr:'lanBadAddr',app_only:'lanAppOnly',connect_failed:'lanConnFail'};
+  return m[c]?tr(m[c]):tr('err')+c};
 function leaveNet(){NET.cleanup();onlineMode=null;$('#netModal').style.display='none';updateNetStatus()}
 
 function renderHost(method){
@@ -1275,12 +1250,9 @@ function renderHost(method){
     $('#netActions').innerHTML=`<button class="btn" id="bCopyCode" style="flex:1">${tr('copy')}</button>
       <button class="btn" id="bCancelHost" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }else{
-    html+=`<div style="font-size:12px;color:#8b93a7">${tr('mNote')}</div>
-    <div class="mstep">${tr('mH1')}</div><textarea id="mOut" class="mta" readonly></textarea>
-    <div class="mrow"><button class="btn" id="mCopy">${tr('copyCode')}</button></div>
-    <div class="mstep">${tr('mH2')}</div><textarea id="mIn" class="mta"></textarea>
-    <div class="mrow"><button class="btn" id="mPaste">${tr('paste')}</button><button class="btn" id="mGo" style="border-color:var(--amber-core)">${tr('connect')}</button></div>
-    <div id="mStatus" style="text-align:center;color:#8b93a7;margin-top:10px;font-size:12px">${tr('mMaking')}</div>`;
+    html+=`<div style="font-size:12px;color:#8b93a7">${tr('lanNote')}</div><br>${tr('lanHostShare')}<br><br>
+    <div id="lanAddr" style="font-size:26px;letter-spacing:2px;color:var(--amber-core);text-align:center;padding:18px;background:#000;border-radius:12px;font-weight:800;direction:ltr">········</div>
+    <div id="lanSt" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px">${tr('lanStarting')}</div>`;
     $('#netActions').innerHTML=`<button class="btn" id="bCancelHost" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }
   $('#netBody').innerHTML=html;$('#netModal').style.display='flex';
@@ -1296,15 +1268,11 @@ function renderHost(method){
       err=>{const st=document.getElementById('hostStatus');if(st)st.textContent=tr('err')+(err.message||err.type)});
     $('#bCopyCode').onclick=()=>{if(NET.roomCode&&navigator.clipboard)navigator.clipboard.writeText(NET.roomCode)};
   }else{
-    const st=$('#mStatus'),out=$('#mOut'),inp=$('#mIn');
-    if(!hasRTC()){st.textContent=tr('mNoJs');return}
+    const st=$('#lanSt'),ad=$('#lanAddr');
+    if(!NET.hasLan()){st.textContent=tr('lanAppOnly');return}
     onlineMode='host';
-    NET.hostManual(code=>{out.value=code;st.textContent=tr('mReady')},()=>{},
-      err=>{st.textContent=tr('err')+(err.message||err.type||'')});
-    $('#mCopy').onclick=()=>copyEl(out,st);
-    $('#mPaste').onclick=()=>pasteInto(inp);
-    $('#mGo').onclick=async()=>{st.textContent=tr('connecting');
-      try{await NET.acceptAnswer(inp.value)}catch(e){st.textContent=tr('mBad')}};
+    NET.hostLan(addr=>{ad.textContent=addr;st.textContent=tr('hostWait')},()=>{},
+      err=>{st.textContent=lanErr(err)});
   }
 }
 function renderJoin(method){
@@ -1318,13 +1286,15 @@ function renderJoin(method){
     $('#netActions').innerHTML=`<button class="btn" id="bDoJoin" style="flex:1;border-color:var(--amber-core)">${tr('connect')}</button>
       <button class="btn" id="bCancelJoin" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }else{
-    html+=`<div style="font-size:12px;color:#8b93a7">${tr('mNote')}</div>
-    <div class="mstep">${tr('mJ1')}</div><textarea id="mIn" class="mta"></textarea>
-    <div class="mrow"><button class="btn" id="mPaste">${tr('paste')}</button><button class="btn" id="mMake" style="border-color:var(--amber-core)">${tr('makeReply')}</button></div>
-    <div class="mstep">${tr('mJ2')}</div><textarea id="mOut" class="mta" readonly></textarea>
-    <div class="mrow"><button class="btn" id="mCopy">${tr('copyCode')}</button></div>
-    <div id="mStatus" style="text-align:center;color:#8b93a7;margin-top:10px;font-size:12px"></div>`;
-    $('#netActions').innerHTML=`<button class="btn" id="bCancelJoin" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
+    html+=`<div style="font-size:12px;color:#8b93a7">${tr('lanNote')}</div>
+    <div class="mstep">${tr('lanRooms')}</div>
+    <div id="lanRooms" style="display:flex;flex-direction:column;gap:8px;margin-top:6px"></div>
+    <div class="mstep">${tr('lanManual')}</div>
+    <input id="lanInput" placeholder="192.168.43.1" inputmode="decimal" autocomplete="off"
+      style="width:100%;box-sizing:border-box;margin-top:6px;padding:14px;font-size:20px;letter-spacing:2px;text-align:center;direction:ltr;background:#000;border:2px solid var(--amber-core);border-radius:12px;color:var(--amber-core);font-weight:800;outline:none">
+    <div id="joinStatus" style="text-align:center;color:#8b93a7;margin-top:14px;font-size:12px"></div>`;
+    $('#netActions').innerHTML=`<button class="btn" id="bDoJoin" style="flex:1;border-color:var(--amber-core)">${tr('connect')}</button>
+      <button class="btn" id="bCancelJoin" style="flex:1;border-color:var(--signal-red)">${tr('cancel')}</button>`;
   }
   $('#netBody').innerHTML=html;$('#netModal').style.display='flex';
   document.querySelectorAll('#netBody .ntab').forEach(b=>b.onclick=()=>renderJoin(+b.dataset.m));
@@ -1341,16 +1311,25 @@ function renderJoin(method){
     $('#bDoJoin').onclick=doJoin;
     $('#joinCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter')doJoin()});
   }else{
-    const st=$('#mStatus'),out=$('#mOut'),inp=$('#mIn');
-    $('#mCopy').onclick=()=>copyEl(out,st);
-    $('#mPaste').onclick=()=>pasteInto(inp);
-    $('#mMake').onclick=()=>{
-      if(!hasRTC()){st.textContent=tr('mNoJs');return}
-      if(!inp.value.trim()){st.textContent=tr('enterCode');return}
-      onlineMode='guest';st.textContent=tr('mMaking');out.value='';
-      NET.joinManual(inp.value,code=>{out.value=code;st.textContent=tr('mJReady')},()=>{NET.send({t:'hello'})},
-        err=>{st.textContent=(err&&err.message==='bad code'||err&&err.name==='SyntaxError')?tr('mBad'):tr('err')+(err.message||err.type||'');onlineMode=null});
+    const st=$('#joinStatus'),list=$('#lanRooms'),inp=$('#lanInput');
+    const go=addr=>{
+      addr=(addr||'').trim();
+      if(!addr){st.textContent=tr('lanBadAddr');return}
+      if(!NET.hasLan()){st.textContent=tr('lanAppOnly');return}
+      onlineMode='guest';st.textContent=tr('connecting');
+      NET.joinLan(addr,()=>{NET.send({t:'hello'})},
+        err=>{st.textContent=lanErr(err);onlineMode=null});
     };
+    const showRooms=rooms=>{
+      list.textContent='';
+      if(!rooms.length){const d=document.createElement('div');d.style.cssText='color:#8b93a7;font-size:12px';d.textContent=tr('lanScanning');list.appendChild(d);return}
+      rooms.forEach(r=>{const b=document.createElement('button');b.className='btn';
+        b.style.cssText='width:100%;border-color:var(--amber-core);color:var(--amber-core);direction:ltr';
+        b.textContent=r.name+' · '+r.ip;b.onclick=()=>go(r.ip+':'+r.port);list.appendChild(b)});
+    };
+    $('#bDoJoin').onclick=()=>go(inp.value);
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')go(inp.value)});
+    if(NET.lanScan(showRooms))showRooms([]);else st.textContent=tr('lanAppOnly');
   }
 }
 const openHostModal=()=>renderHost(1);
