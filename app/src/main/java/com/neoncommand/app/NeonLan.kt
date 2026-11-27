@@ -1,12 +1,15 @@
 package com.neoncommand.app
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
@@ -101,6 +104,34 @@ class NeonLan(
     @JavascriptInterface
     fun stopScan() {
         stopScanInternal()
+    }
+
+    /** برای عیب‌یابی: اینترفیس‌های شبکه و وضعیت VPN (JSON). */
+    @JavascriptInterface
+    fun info(): String {
+        val arr = JSONArray()
+        try {
+            for (ni in Collections.list(NetworkInterface.getNetworkInterfaces())) {
+                try {
+                    if (ni.isLoopback) continue
+                    val ips = JSONArray()
+                    for (ia in ni.interfaceAddresses) {
+                        val a = ia.address
+                        if (a is Inet4Address) ips.put(a.hostAddress)
+                    }
+                    if (ips.length() == 0) continue
+                    val n = ni.name.lowercase()
+                    arr.put(
+                        JSONObject()
+                            .put("n", ni.name)
+                            .put("a", ips)
+                            .put("up", ni.isUp)
+                            .put("skip", BAD_IF.any { n.startsWith(it) })
+                    )
+                } catch (_: Exception) {}
+            }
+        } catch (_: Exception) {}
+        return JSONObject().put("ifs", arr).put("vpn", isVpnActive()).toString()
     }
 
     /** از onDestroy صدا زده شود. */
@@ -239,6 +270,7 @@ class NeonLan(
                     }
                     sock = c            // تا close() بتواند connect را قطع کند
                 }
+                bindToWifi(c)
                 c.connect(target, CONNECT_TIMEOUT_MS)
                 attach(my, c)
             } catch (e: Exception) {
@@ -460,12 +492,51 @@ class NeonLan(
                     val a = ia.address
                     if (a !is Inet4Address || !a.isSiteLocalAddress) continue
                     val ip = a.hostAddress ?: continue
-                    val item = LocalAddr(ip, ia.broadcast)
+                    val item = LocalAddr(ip, ia.broadcast ?: directedBroadcast(a, ia.networkPrefixLength.toInt()))
                     if (GOOD_IF.any { n.startsWith(it) }) preferred.add(item) else others.add(item)
                 }
             } catch (_: Exception) {}
         }
         return preferred + others
+    }
+
+    @Suppress("DEPRECATION")
+    private fun isVpnActive(): Boolean = try {
+        val cm = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        cm.allNetworks.any {
+            cm.getNetworkCapabilities(it)?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        }
+    } catch (e: Exception) {
+        false
+    }
+
+    /** مهمان: سوکت را به شبکهٔ Wi-Fi واقعی می‌بندد تا VPN یا دیتای موبایل مسیرش را عوض نکند. */
+    @Suppress("DEPRECATION")
+    private fun bindToWifi(c: Socket) {
+        try {
+            val cm = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            for (n in cm.allNetworks) {
+                val caps = cm.getNetworkCapabilities(n) ?: continue
+                if (caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) &&
+                    !caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+                ) {
+                    n.bindSocket(c)
+                    return
+                }
+            }
+        } catch (_: Exception) {}
+    }
+
+    /** آدرس broadcast شبکه را از آی‌پی و طول پیشوند می‌سازد (وقتی سیستم نمی‌دهد). */
+    private fun directedBroadcast(a: Inet4Address, prefix: Int): InetAddress? {
+        if (prefix !in 1..30) return null
+        val b = a.address
+        val ip = ((b[0].toInt() and 255) shl 24) or ((b[1].toInt() and 255) shl 16) or
+            ((b[2].toInt() and 255) shl 8) or (b[3].toInt() and 255)
+        val bc = ip or (-1 shl (32 - prefix)).inv()
+        return InetAddress.getByAddress(
+            byteArrayOf((bc ushr 24).toByte(), (bc ushr 16).toByte(), (bc ushr 8).toByte(), bc.toByte())
+        )
     }
 
     private fun deviceName(): String {
