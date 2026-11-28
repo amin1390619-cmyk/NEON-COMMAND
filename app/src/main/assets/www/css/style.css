@@ -224,4 +224,4 @@ body.tut #tutBox{display:flex}
 #modal.scr #bClose{left:8%;right:8%}
 #modal.wide #bClose{left:14px;right:14px}
 /* پس‌زمینهٔ بازی برای انتخاب نقشه، بازی آنلاین و بازی با AI */
-#modal.bgm,#netModal{background:linear-gradient(rgba(11,15,26,.58),rgba(11,15,26,.58)),var(--bg) center/cover no-repeat !important}
+#modal.bgm,#netModal{background:#0B0F1A !important}
