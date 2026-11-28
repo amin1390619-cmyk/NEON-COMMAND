@@ -1416,22 +1416,23 @@ function mapSvg(id){const m=MAPS[id],sz=9,w=Math.sqrt(3)*sz,W=w*8.5+2,H=sz*12.5+
 function pickMap(cb){const cur=S.map||'classic';
  modal('<b>🗺 '+tr('mapTitle')+'</b><div class="mapRow">'+MAP_IDS.map(id=>{const m=MAPS[id];
   return '<button class="mapCard'+(id===cur?' cur':'')+'" data-id="'+id+'">'+mapSvg(id)+'<div class="mc-n">'+tr('map_'+id)+'</div><small>'+(m.obs.length+' '+tr('mapObs')+' · '+m.rep.length+' '+tr('mapRep'))+'</small></button>'}).join('')
-  +'</div>');$('#modal').classList.add('bgm');
+  +'</div>');$('#modal').classList.add('bgm');solidBg();
  document.querySelectorAll('#mtxt .mapCard').forEach(b=>b.onclick=()=>{S.map=b.dataset.id;syncSet();$('#modal').classList.remove('on');cb()});}
 $('#bLocal').onclick=()=>pickMap(()=>{ NET.cleanup();onlineMode=null;updateNetStatus(); show('game');newGame(false) });
 const startAI=lv=>{S.aiLevel=lv;syncSet();pickMap(()=>{NET.cleanup();onlineMode=null;updateNetStatus();show('game');newGame(true)})};
 $('#bAI').onclick=()=>{
   const col={easy:'var(--neon-cyan)',medium:'var(--amber-core)',hard:'var(--signal-red)'};
   modal('<b>'+tr('aiLvTitle')+'</b>'+['easy','medium','hard'].map(l=>'<button class="btn" data-lv="'+l+'" style="width:100%;margin-top:12px;border-color:'+col[l]+';color:'+col[l]+(S.aiLevel===l?';box-shadow:0 0 12px '+col[l]+' inset':'')+'">'+(S.aiLevel===l?'✓ ':'')+tr('lv_'+l)+'<br><small style="font-weight:400;opacity:.8;color:var(--hull-silver)">'+tr('lvd_'+l)+'</small></button>').join(''));
-  $('#modal').classList.add('bgm');document.querySelectorAll('#mtxt [data-lv]').forEach(b=>b.onclick=()=>startAI(b.dataset.lv));
+  $('#modal').classList.add('bgm');solidBg();document.querySelectorAll('#mtxt [data-lv]').forEach(b=>b.onclick=()=>startAI(b.dataset.lv));
 };
 $('#bOnline').onclick=()=>{
   const st='width:100%;margin-top:12px;border-color:var(--amber-core);color:var(--amber-core)';
   modal('<b>🌐 '+tr('online')+'</b><button class="btn" id="oHost" style="'+st+'">'+tr('host')+'</button><button class="btn" id="oJoin" style="'+st+'">'+tr('join')+'</button>');
-  $('#modal').classList.add('bgm');
+  $('#modal').classList.add('bgm');solidBg();
   $('#oHost').onclick=()=>pickMap(openHostModal);
   $('#oJoin').onclick=()=>{$('#modal').classList.remove('on');openJoinModal()};
 };
+function solidBg(){$('#modal').style.setProperty('background','#0B0F1A','important')}
 const modal=t=>{$('#modal').style.background='';const _m=$('#mtxt');_m.style.transition='none';_m.style.transform='';_m.innerHTML=t;_m.scrollTop=0;$('#modal').classList.remove('wide','scr','bgm');$('#modal').classList.add('on')};
 /* v1.8.1 — کشش لاستیکی هنگام اسکرول در پنجره‌های تنظیمات و راهنما */
 (function(){const mt=document.getElementById('mtxt'),md=document.getElementById('modal'),CAP=150;
@@ -1482,10 +1483,11 @@ function ncAuthBind(){
 }
 function openSettings(){const row=(k,id)=>'<div class="sr"><span>'+tr(k)+'</span><button class="tg" id="'+id+'"></button></div>';
  modal('<div class="sh">⚙ '+tr('setTitle')+'</div>'
+  +'<div class="sg">'+tr('setGame')+'</div>'+row('confirmEnd','tConfirm')+(navigator.vibrate?row('vib','tVib'):'')+''+row('language','tLang')
++'<div class="sr"><span>'+tr('support')+'</span><button class="tg" id="tSupport">'+tr('supportBtn')+'</button></div>'
   +'<div class="sg">'+tr('setAudio')+'</div>'+row('sound','tSound')+row('music','tMusic')
   +'<div class="sg">'+tr('setDisplay')+'</div>'+row('grid','tGrid')+row('fxOpt','tFx')+row('fpsOpt','tFps')+(pxSupported()?'<div class="sr"><span>'+tr('gfxOpt')+'</span><div class="sel" id="tGfx"><button class="ar" id="gL" aria-label="prev"><svg viewBox="0 0 10 10"><path d="M6.5 1.5 3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span id="gV"></span><button class="ar" id="gR" aria-label="next"><svg viewBox="0 0 10 10"><path d="M3.5 1.5 7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>':'')
-  +'<div class="sg">'+tr('setGame')+'</div>'+row('confirmEnd','tConfirm')+(navigator.vibrate?row('vib','tVib'):'')+''+row('language','tLang')
-+'<div class="sr"><span>'+tr('support')+'</span><button class="tg" id="tSupport">'+tr('supportBtn')+'</button></div>'+ncAuthHtml());
+  +ncAuthHtml());
  $('#modal').classList.add('scr');$('#modal').style.background='#0B0F1A';syncSet();
  $('#tSound').onclick=()=>{S.sound=!S.sound;syncSet()};$('#tMusic').onclick=()=>{S.music=!S.music;syncSet();if(!S.music)stopMusic();else if($('#game').classList.contains('on')&&!over)startMusic()};$('#tGrid').onclick=()=>{S.grid=!S.grid;syncSet()};$('#tFx').onclick=()=>{S.fx=(S.fx===false);syncSet()};{const tv=$('#tVib');if(tv)tv.onclick=()=>{S.vib=(S.vib===false);syncSet();vib(40)}}
  {const tp=$('#tFps');if(tp)tp.onclick=()=>{S.fps=(S.fps===false);syncSet()}}
