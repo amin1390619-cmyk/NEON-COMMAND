@@ -240,8 +240,75 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /** نصب‌کننده (فروشگاه): بازار، مایکت یا نامشخص */
+    private fun installerPackage(): String {
+        var installer: String? = null
+        try {
+            if (Build.VERSION.SDK_INT >= 30) {
+                installer = packageManager.getInstallSourceInfo(packageName).installingPackageName
+            } else {
+                @Suppress("DEPRECATION")
+                installer = packageManager.getInstallerPackageName(packageName)
+            }
+        } catch (e: Exception) {
+            installer = null
+        }
+        return installer ?: ""
+    }
+
+    private fun tryStart(intent: Intent): Boolean {
+        return try {
+            startActivity(intent)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    /** باز کردن صفحهٔ ثبت نظر در همان فروشگاهی که بازی از آن نصب شده */
+    private fun openStoreRate() {
+        when (installerPackage()) {
+            BAZAAR_PKG -> {
+                val uri = Uri.parse("bazaar://details?id=$packageName")
+                val edit = Intent(Intent.ACTION_EDIT, uri).setPackage(BAZAAR_PKG)
+                if (!tryStart(edit)) {
+                    tryStart(Intent(Intent.ACTION_VIEW, uri).setPackage(BAZAAR_PKG))
+                }
+            }
+            MYKET_PKG -> {
+                val comment = Intent(Intent.ACTION_VIEW, Uri.parse("myket://comment?id=$packageName"))
+                if (!tryStart(comment)) {
+                    tryStart(Intent(Intent.ACTION_VIEW, Uri.parse("myket://details?id=$packageName")))
+                }
+            }
+        }
+    }
+
+    /** پل JavaScript: window.NeonRate  (getStore() -> "bazaar" | "myket" | "other",  openRate()) */
+    private inner class NeonRateBridge {
+
+        @JavascriptInterface
+        fun getStore(): String {
+            return when (installerPackage()) {
+                BAZAAR_PKG -> "bazaar"
+                MYKET_PKG -> "myket"
+                else -> "other"
+            }
+        }
+
+        @JavascriptInterface
+        fun openRate() {
+            runOnUiThread {
+                if (isFinishing || isDestroyed) return@runOnUiThread
+                if (isTrustedPage()) openStoreRate()
+            }
+        }
+    }
+
     companion object {
         private const val TRUSTED_HOST = "appassets.androidplatform.net"
+        private const val BAZAAR_PKG = "com.farsitel.bazaar"
+        private const val MYKET_PKG = "ir.mservices.market"
     }
 
     private fun enableImmersiveMode() {
@@ -404,6 +471,7 @@ class MainActivity : ComponentActivity() {
         }
 
         webView.addJavascriptInterface(NeonAuthBridge(), "NeonAuth")
+        webView.addJavascriptInterface(NeonRateBridge(), "NeonRate")
 
         payBridge = PayBridge(this, { webView }, { isTrustedPage() })
         webView.addJavascriptInterface(payBridge, "NeonPay")
